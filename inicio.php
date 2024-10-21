@@ -8,7 +8,14 @@
 <body>
    
 <?php
-include "Soporte.php";
+include_once "DWES\ProyectoVideoClub\Soporte.php";
+use DWES\ProyectoVideoclub\Soporte;
+use DWES\ProyectoVideoclub\CintaVideo;
+use DWES\ProyectoVideoclub\Dvd;
+use DWES\ProyectoVideoclub\Juego;
+
+
+
 
 $soporte1 = new Soporte("Tenet", 22, 3); 
 echo "<strong>" . $soporte1->titulo . "</strong>"; 

@@ -11,6 +11,15 @@ include_once "CintaVideo.php";
 include_once "Dvd.php";
 include_once "Juego.php";
 include_once "Cliente.php";
+use DWES\ProyectoVideoclub\Soporte;
+use DWES\ProyectoVideoclub\CintaVideo;
+use DWES\ProyectoVideoclub\Dvd;
+use DWES\ProyectoVideoclub\Juego;
+use DWES\ProyectoVideoclub\Cliente;
+
+
+
+
 
 //instanciamos un par de objetos cliente
 $cliente1 = new Cliente("Bruce Wayne", 23);

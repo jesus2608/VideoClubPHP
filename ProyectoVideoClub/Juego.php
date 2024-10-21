@@ -1,5 +1,6 @@
 <?php
-include_once "Soporte.php";
+namespace DWES\ProyectoVideoclub;
+include "autoload.php";
 
 class Juego extends Soporte{
     public function __construct(

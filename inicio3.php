@@ -7,7 +7,8 @@
 </head>
 <body>
 <?php
-include_once "Videoclub.php"; // No incluimos nada más
+include "autoload.php";
+use DWES\ProyectoVideoclub\VideoClub;
 
 $vc = new Videoclub("Severo 8A"); 
 
@@ -38,6 +39,9 @@ $vc->alquilarSocioProducto(1,6);
 
 //listo los socios 
 $vc->listarSocios();
+
+
+$vc->alquilarSocioProducto(1,2)->alquilarSocioProducto(1,3)->alquilarSocioProducto(1,2)->alquilarSocioProducto(1,6);
 ?>
 </body>
 </html>

@@ -1,5 +1,7 @@
 <?php
-include_once "Soporte.php";
+namespace DWES\ProyectoVideoclub;
+
+include "autoload.php";
 
 class Dvd extends Soporte{
     public function __construct(

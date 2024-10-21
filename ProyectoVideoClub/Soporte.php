@@ -1,11 +1,15 @@
 <?php
-include_once "interfaz.php";
+namespace DWES\ProyectoVideoclub;
+
+include "autoload.php";
 abstract class Soporte implements Resumible{
     const iva = 0.21;
+
     public function __construct(
         public string $titulo,
         protected int $numero,
         private float $precio,
+        public bool $alquilado=false
     )
     {
     }

@@ -1,5 +1,11 @@
 <?php
+namespace DWES\ProyectoVideoclub;
+
+use CupoSuperadoException;
+use SoporteYaAlquilado;
+
 class Cliente{
+    
 public function __construct(
     public string $nombre,
     private int $numero,
@@ -29,18 +35,26 @@ public function tieneAlquilado(Soporte $s):bool{
     return false;
 }
 public function alquilar(Soporte $s):bool{
+    try{
     if($this->tieneAlquilado($s)){
-        echo "<br>El cliente ya tiene alquilado el soporte ".$s->titulo."<br>";
-        return false;
+        throw new SoporteYaAlquilado("");
+      
     }elseif($this->getNumSoportesAlquilados()>=$this->maxAlquilerConcurrente){
-        echo "<br>Este cliente tiene ".$this->maxAlquilerConcurrente." elementos alquilados. No puede alquilar mas en este videoclub hasta que no devuelvas algo <br>";
-        return false;
+        throw new CupoSuperadoException("");
     }else{
         $this->numSoportesAlquilados++;
         array_push($this->soportesAlquilados,$s);
         echo "<br>Alquilado soporte a ".$this->nombre."<br>".$s->muestraResumen();
+        $s->alquilado=true;
         return true;
     }
+}catch(SoporteYaAlquilado $e){
+    echo $e->error();
+    return false;
+}catch(CupoSuperadoException $e){
+    echo $e->error();
+    return false;
+}
 }
 public function devolver(int $numeroSoporte):bool{
     if($this->numSoportesAlquilados==0){
@@ -49,6 +63,7 @@ public function devolver(int $numeroSoporte):bool{
     }else{
     for ($i=0; $i <$this->numSoportesAlquilados ; $i++) { 
         if($this->soportesAlquilados[$i]->getNumero()==$numeroSoporte){
+            $this->soportesAlquilados[$i]->alquilado=false;
             $this->numSoportesAlquilados--;
             echo "Soporte devuelto<br>";
             array_splice($this->soportesAlquilados, $i, 1);
